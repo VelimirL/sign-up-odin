@@ -1,7 +1,17 @@
+@mixin mq($size) {
+  @media only screen and (max-width: $size) {
+    @content;
+  }
+}
+
 .main__container {
   display: flex;
   width: 99vw;
   height: 100vh;
+  @include mq(1100px) {
+    width: 95vw;
+    flex-direction: column;
+  }
 }
 
 .image__container {
@@ -26,6 +36,9 @@
     width: 100%;
     padding: 1rem;
     background-color: rgba($color-primary, 0.5);
+    @include mq(1100px) {
+      height: 30vw;
+    }
 
     &--image {
       height: 100%;
@@ -38,6 +51,9 @@
       font-family: "Norse";
       font-size: 6.5vw;
       letter-spacing: 0.5rem;
+      @include mq(1100px) {
+        font-size: 20vw;
+      }
     }
   }
 }
@@ -56,6 +72,14 @@
     font-size: 2.1rem;
     font-weight: bold;
     width: 66rem;
+
+    @include mq(1100px) {
+      width: 85vw;
+      padding: 2rem;
+      overflow-wrap: break-word;
+      align-items: center;
+      text-align: center;
+    }
   }
 
   &__inputs {
@@ -70,6 +94,9 @@
       padding-top: 3rem;
       font-size: 2.3rem;
       font-weight: bold;
+      @include mq(1100px) {
+        text-align: center;
+      }
     }
 
     &--data {
@@ -87,11 +114,19 @@
   flex-wrap: wrap;
   gap: 3rem;
   flex-basis: 60%;
+
+  @include mq(1350px) {
+    flex-basis: 100%;
+  }
+  @include mq(1100px) {
+    justify-content: center;
+  }
 }
 
 .flex-form {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 20rem;
   max-width: 30rem;
   font-weight: bold;
@@ -101,15 +136,31 @@
 
   input {
     padding-left: 0.5rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
     width: 100%;
     height: 2.5rem;
+
+    @include mq(1100px) {
+      width: 25rem;
+      height: 3rem;
+      font-size: 2rem;
+    }
+
+    &:focus {
+      border: none;
+      outline: 3px solid $color-secondary;
+    }
   }
 }
 
 .submit {
   background-color: $color-tertiary;
   padding: 2rem 4rem;
+  @include mq(1100px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   input {
     font-family: "Poppins";
@@ -129,5 +180,31 @@
     padding: 0 4rem;
     margin-bottom: 10rem;
     font-size: 1.6rem;
+    @include mq(1100px) {
+      text-align: center;
+    }
   }
+}
+
+.error {
+  outline: 2px solid rgb(185, 12, 12);
+}
+
+.error__block {
+  padding: 0.2rem;
+  color: rgb(185, 12, 12);
+  font-size: 1.3rem;
+  position: absolute;
+  bottom: -2.6rem;
+  display: none;
+}
+
+.warning__block {
+  padding: 0.2rem;
+  color: rgb(238, 194, 0);
+  font-size: 2rem;
+  position: absolute;
+  bottom: -2.7rem;
+  left: 2rem;
+  display: none;
 }
