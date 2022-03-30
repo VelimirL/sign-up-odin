@@ -9,7 +9,7 @@
   width: 99vw;
   height: 100vh;
   @include mq(1100px) {
-    width: 95vw;
+    width: 100vw;
     flex-direction: column;
   }
 }
